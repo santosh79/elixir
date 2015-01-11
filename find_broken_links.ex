@@ -12,7 +12,7 @@ defmodule UrlChecker do
       spawn UrlChecker, :works?, [self, url]
     end
 
-    urls |> Enum.each(&working_url.(&1))
+    urls |> Enum.each(&working_url/1)
     get_results Enum.count(urls)
   end
 
