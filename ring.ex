@@ -25,19 +25,25 @@ defmodule Ring do
     Process.register pid, :ring_server
   end
 
+  def running?, do: !!Process.whereis(:ring_server)
+
   def send_message(message) do
     pid = Process.whereis :ring_server
     send pid, message
   end
 
+  def die do
+    running? && send_message(:die)
+  end
+
   def loop(head) do
     receive do
       :die ->
-        send head, :die
+        Ring.Node.send_to_node head, :die
         IO.puts "server exiting.."
         :void
       message ->
-        send head, message
+        Ring.Node.send_to_node head, message
         loop head
     end
   end
@@ -60,17 +66,17 @@ defmodule Ring do
 end
 
 defmodule Ring.Node do
-  defp pass_on_msg(prev, msg) do
-    send prev, msg
+  def send_to_node(pid, msg) do
+    send pid, {self, msg}
   end
 
   def loop() do
     receive do
-      :die ->
+      {_sender, :die} ->
         IO.inspect(self)
         IO.puts("exiting..")
         :void
-      message ->
+      {_sender, message} ->
         IO.inspect(self)
         IO.puts("got message #{message}")
         loop
@@ -79,15 +85,15 @@ defmodule Ring.Node do
 
   def loop(prev) do
     receive do
-      :die ->
+      {_sender, :die} ->
         IO.inspect(self)
         IO.puts("exiting..")
-        pass_on_msg prev, :die
+        send_to_node prev, :die
         :void
-      message ->
+      {_sender, message} ->
         IO.inspect(self)
         IO.puts("got message #{message}")
-        pass_on_msg prev, message
+        send_to_node prev, message
         loop prev
     end
   end
