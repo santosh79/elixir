@@ -67,16 +67,16 @@ end
 
 defmodule Ring.Node do
   def send_to_node(pid, msg) do
-    send pid, {self, msg}
+    send pid, msg
   end
 
   def loop() do
     receive do
-      {_sender, :die} ->
+      :die ->
         IO.inspect(self)
         IO.puts("exiting..")
         :void
-      {_sender, message} ->
+      message ->
         IO.inspect(self)
         IO.puts("got message #{message}")
         loop
@@ -85,12 +85,12 @@ defmodule Ring.Node do
 
   def loop(prev) do
     receive do
-      {_sender, :die} ->
+      :die ->
         IO.inspect(self)
         IO.puts("exiting..")
         send_to_node prev, :die
         :void
-      {_sender, message} ->
+      message ->
         IO.inspect(self)
         IO.puts("got message #{message}")
         send_to_node prev, message
