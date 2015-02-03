@@ -74,7 +74,7 @@ defmodule TowersOfHanoiWithProcesses do
     to    = start :to
     spare = start :spare
 
-    1..number_of_tires |> Enum.reverse |> Enum.each fn(num) ->
+    number_of_tires..1 |> Enum.each fn(num) ->
       add from, num
     end
 
