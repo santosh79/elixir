@@ -86,7 +86,7 @@ defmodule TowersOfHanoiWithProcesses do
   end
 
   defp move(1, from, to, spare) do
-    el = TowersOfHanoi.Tower.pop from
+    el = pop from
     add to, el
 
     IO.puts "------------"
