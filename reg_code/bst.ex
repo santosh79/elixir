@@ -68,15 +68,12 @@ defmodule Bst do
 
   def test do
     root = Bst.start 10_000
-    result = Bst.contains root, 10_000
-    IO.puts "#{result}"
+    true = Bst.contains(root, 10_000)
 
     Bst.add root, 100
-    result = Bst.contains root, 100
-    IO.puts "#{result}"
+    true = Bst.contains root, 100
 
-    result = Bst.contains root, 10 #fail
-    IO.puts "#{result}"
+    false = Bst.contains root, 10 #fail
   end
 end
 
