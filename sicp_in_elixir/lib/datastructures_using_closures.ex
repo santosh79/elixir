@@ -1,12 +1,12 @@
-defmodule DS do
-  def stack(elements \\ []) do
+defmodule Stack do
+  def create(elements \\ []) do
     fn(option, el) ->
       case option do
         :push ->
-          stack [el|elements]
+          create [el|elements]
         :pop ->
           [h|t] = elements
-          [stack(t), h]
+          [create(t), h]
       end
     end
   end
@@ -17,8 +17,8 @@ end
 
 defmodule DS.Test do
   def run do
-    import DS
-    s                   = stack
+    import Stack
+    s                   = create
     with_ten_and_twenty = s |> push(10) |> push(20)
     twenty              = with_ten_and_twenty |> pop |> Enum.at(1)
     ten                 = with_ten_and_twenty |> pop |> Enum.at(0) |> pop |> Enum.at(1)
