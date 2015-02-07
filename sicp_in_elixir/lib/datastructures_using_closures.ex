@@ -1,11 +1,11 @@
 defmodule DS do
-  def stack(list \\ []) do
+  def stack(elements \\ []) do
     fn(option, el) ->
       case option do
         :push ->
-          stack [el|list]
+          stack [el|elements]
         :pop ->
-          [h|t] = list
+          [h|t] = elements
           [stack(t), h]
       end
     end
