@@ -1,18 +1,18 @@
 defmodule Stack do
-  def create(elements \\ []) do
+  def create(items \\ []) do
     fn(option, el) ->
       case option do
         :push ->
-          create [el|elements]
+          create [el|items]
         :pop ->
-          [h|t] = elements
+          [h|t] = items
           [create(t), h]
       end
     end
   end
 
   def push(stack, item), do: stack.(:push, item)
-  def pop(stack), do: stack.(:pop, :void)
+  def pop(stack),        do: stack.(:pop, :void)
 end
 
 defmodule DS.Test do
