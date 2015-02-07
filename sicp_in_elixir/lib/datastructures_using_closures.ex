@@ -1,15 +1,4 @@
 defmodule DS do
-  def test do
-    s                   = stack
-    with_ten_and_twenty = s |> push(10) |> push(20)
-    twenty              = with_ten_and_twenty |> pop |> Enum.at(1)
-    ten                 = with_ten_and_twenty |> pop |> Enum.at(0) |> pop |> Enum.at(1)
-
-    20 = twenty
-    10 = ten
-    :ok
-  end
-
   def stack(list \\ []) do
     fn(option, el) ->
       case option do
@@ -26,3 +15,16 @@ defmodule DS do
   def pop(stack), do: stack.(:pop, :void)
 end
 
+defmodule DS.Test do
+  def run do
+    import DS
+    s                   = stack
+    with_ten_and_twenty = s |> push(10) |> push(20)
+    twenty              = with_ten_and_twenty |> pop |> Enum.at(1)
+    ten                 = with_ten_and_twenty |> pop |> Enum.at(0) |> pop |> Enum.at(1)
+
+    20 = twenty
+    10 = ten
+    :ok
+  end
+end
