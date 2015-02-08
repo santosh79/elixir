@@ -20,5 +20,15 @@ defmodule Rational do
 
   def denom(x), do: x.(:denom)
   def numer(x), do: x.(:numer)
+
+  def print_rat(rat) do
+    IO.puts "#{numer(rat)} / #{denom(rat)}"
+  end
+end
+
+defimpl String.Chars, for: Rational do
+  import Rational
+  def to_string(rat) do
+  end
 end
 
