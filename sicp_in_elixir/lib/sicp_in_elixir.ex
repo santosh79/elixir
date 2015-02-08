@@ -54,7 +54,7 @@ defmodule SicpInElixir do
     avg(quotient, guess)
   end
 
-  defp avg(a, b), do: (a + b)/2
+  def avg(a, b), do: (a + b)/2
 
   defp good_enough?(number, guess) do
     abs(square(guess) - number) < 0.001
