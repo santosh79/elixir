@@ -9,7 +9,8 @@ defmodule Rational do
     make_rat numer(x) * numer(y), denom(x) * denom(y)
   end
 
-  def make_rat(num, den) do
+  def make_rat(n, d) do
+    {num, den} = divide_by_gcd n, d
     fn(option) ->
       case option do
         :numer -> num
@@ -24,11 +25,11 @@ defmodule Rational do
   def print_rat(rat) do
     IO.puts "#{numer(rat)} / #{denom(rat)}"
   end
-end
 
-defimpl String.Chars, for: Rational do
-  import Rational
-  def to_string(rat) do
+  defp divide_by_gcd(n, d) do
+    import SicpInElixir, only: [gcd: 2]
+    g = gcd n, d
+    {div(n, g), div(d, g)}
   end
 end
 

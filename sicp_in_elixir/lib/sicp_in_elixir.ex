@@ -1,5 +1,10 @@
 defmodule SicpInElixir do
 
+  def gcd(a, 0), do: a
+  def gcd(a, b) do
+    gcd b, rem(a, b)
+  end
+
   def inc(x), do: x + 1
   def dec(x), do: x - 1
 

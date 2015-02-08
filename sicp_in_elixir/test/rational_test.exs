@@ -8,8 +8,8 @@ defmodule RationalTest do
     result_numer = numer result
     result_denom = denom result
 
-    assert result_denom == (100 * 100)
-    assert result_numer == (10 * 100 + 20 * 100)
+    assert result_numer == 3
+    assert result_denom == 10
   end
 
   test "multiply" do
@@ -19,7 +19,7 @@ defmodule RationalTest do
     result_numer = numer result
     result_denom = denom result
 
-    assert result_numer == (10 * 20)
-    assert result_denom == (100 * 100)
+    assert result_numer == 1
+    assert result_denom == 50
   end
 end
