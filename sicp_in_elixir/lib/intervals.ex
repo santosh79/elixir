@@ -8,5 +8,11 @@ defmodule Intervals do
     upper_bound_sum = upper_bound(a) + upper_bound(b)
     make_interval lower_bound_sum, upper_bound_sum
   end
+
+  def sub_interval(a, b) do
+    lower_bound_diff = lower_bound(a) - upper_bound(b)
+    upper_bound_diff = upper_bound(a) - lower_bound(b)
+    make_interval lower_bound_diff, upper_bound_diff
+  end
 end
 
