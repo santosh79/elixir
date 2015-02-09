@@ -29,4 +29,13 @@ defmodule IntervalsTest do
     assert upper_bound(diff) == 2.2
   end
 
+  test "mult interval" do
+    a   = make_interval 1, 3
+    b   = make_interval 2.5, 3.2
+    product = mult_interval a, b
+
+    assert lower_bound(product) == 2.5
+    assert Float.round(upper_bound(product), 1) == 9.6
+  end
+
 end

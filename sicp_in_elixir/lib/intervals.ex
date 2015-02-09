@@ -14,5 +14,11 @@ defmodule Intervals do
     upper_bound_diff = upper_bound(a) - lower_bound(b)
     make_interval lower_bound_diff, upper_bound_diff
   end
+
+  def mult_interval(a, b) do
+    lower_bound_product = lower_bound(a) * lower_bound(b)
+    upper_bound_product = upper_bound(a) * upper_bound(b)
+    make_interval lower_bound_product, upper_bound_product
+  end
 end
 
