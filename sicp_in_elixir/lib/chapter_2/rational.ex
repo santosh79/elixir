@@ -9,7 +9,7 @@ defmodule Rational do
     make_rat numer(x) * numer(y), denom(x) * denom(y)
   end
 
-  def make_rat(n, d) do
+  def make_rat(n, d) when d != 0 do
     {num, den} = divide_by_gcd n, d
     fn(option) ->
       case option do
