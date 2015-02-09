@@ -38,4 +38,10 @@ defmodule IntervalsTest do
     assert Float.round(upper_bound(product), 1) == 9.6
   end
 
+  test "make_center_percent" do
+    interval = make_center_percent 2, 10
+    assert Float.round(lower_bound(interval), 1) == 1.8
+    assert Float.round(upper_bound(interval), 1) == 2.2
+  end
+
 end
