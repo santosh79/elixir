@@ -19,4 +19,14 @@ defmodule IntervalsTest do
     assert lower_bound(diff) == 0.5
     assert upper_bound(diff) == 2.2
   end
+
+  test "sub intervals with negative numbers" do
+    a   = make_interval 1, 3
+    b   = make_interval 2.5, 3.2
+    diff = sub_interval b, a
+
+    assert lower_bound(diff) == -0.5
+    assert upper_bound(diff) == 2.2
+  end
+
 end
