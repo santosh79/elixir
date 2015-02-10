@@ -27,7 +27,7 @@ defmodule ConsCarAndCdrTest do
   test "append" do
     one_thru_four  = 1..4 |> Enum.to_list |> list
     five_thru_nine = 5..9 |> Enum.to_list |> list
-    one_thru_nine = append one_thru_four, five_thru_nine
+    one_thru_nine  = append one_thru_four, five_thru_nine
     assert to_ex_list(one_thru_nine) == (1..9 |> Enum.to_list)
   end
 
