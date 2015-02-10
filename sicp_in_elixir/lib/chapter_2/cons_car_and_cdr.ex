@@ -30,5 +30,28 @@
     def list([h|t]) do
       cons(h, list(t))
     end
+
+    def to_ex_list(l) do
+      to_ex_list l, []
+    end
+    defp to_ex_list(nil, acc) do
+      acc |> :lists.reverse
+    end
+    defp to_ex_list(l, acc) do
+      to_ex_list cdr(l), [car(l)|acc]
+    end
+
+    def append(list_one, list_two) do
+      append list_one, list_two, []
+    end
+    defp append(nil, nil, acc) do
+      acc |> :lists.reverse |> list
+    end
+    defp append(nil, list_two, acc) do
+      append nil, cdr(list_two), [car(list_two)|acc]
+    end
+    defp append(list_one, list_two, acc) do
+      append cdr(list_one), list_two, [car(list_one)|acc]
+    end
   end
 
