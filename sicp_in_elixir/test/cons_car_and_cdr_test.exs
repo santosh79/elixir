@@ -15,8 +15,13 @@ defmodule ConsCarAndCdrTest do
 
   test "list_ref" do
     one_thru_four = 1..4 |> Enum.to_list |> list
-    assert list_ref(one_thru_four, 2) == 3
+    assert list_ref(one_thru_four, 2)  == 3
     assert list_ref(one_thru_four, 20) == nil
+  end
+
+  test "length" do
+    one_thru_four = 1..4 |> Enum.to_list |> list
+    assert ConsCarAndCdr.length(one_thru_four) == 4
   end
 
 end

@@ -20,6 +20,12 @@
       list_ref cdr(l), n, (cnt + 1)
     end
 
+    def length(list), do: list_length(list, 0)
+    defp list_length(nil, acc), do: acc
+    defp list_length(list, acc) do
+      list_length cdr(list), (acc + 1)
+    end
+
     def list([h]), do: cons(h, nil)
     def list([h|t]) do
       cons(h, list(t))
