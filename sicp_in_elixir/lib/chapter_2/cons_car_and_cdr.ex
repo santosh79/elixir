@@ -70,10 +70,27 @@ defmodule ConsCarAndCdr do
   ###Example:
     last_pair(list(1,2,3,4)) == 4
   """
-  def last_pair(l), do: last_pair(l, nil)
+  def last_pair(l),          do: last_pair(l, nil)
   defp last_pair(nil, prev), do: prev
-  defp last_pair(l, prev) do
+  defp last_pair(l, prev)    do
     last_pair cdr(l), car(l)
+  end
+
+  @doc ~S"""
+  Takes a list as an argument and returns it's reverse.
+
+  ### Example
+
+      [1,2,3,4] |> list |> reverse
+
+  Would be the same as
+
+      [1,2,3,4] |> :lists.reverse > list
+  """
+  def reverse(l),         do: reverse(l, [])
+  defp reverse(nil, acc), do: acc |> list
+  defp reverse(l, acc)    do
+    reverse cdr(l), [car(l)|acc]
   end
 end
 

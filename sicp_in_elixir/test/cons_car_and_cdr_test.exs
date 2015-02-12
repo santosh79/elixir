@@ -35,4 +35,10 @@ defmodule ConsCarAndCdrTest do
     assert last_pair(list([1,2,3,4])) == 4
   end
 
+  test "reverse" do
+    result_a = [1,2,3,4] |> list |> reverse |> to_ex_list
+    result_b = [4,3,2,1] |> list |> to_ex_list
+    assert result_a == result_b
+  end
+
 end
