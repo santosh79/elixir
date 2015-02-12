@@ -41,6 +41,17 @@ defmodule ConsCarAndCdr do
     to_ex_list cdr(l), [car(l)|acc]
   end
 
+  @doc ~S"""
+  Takes two lists as arguments and returns an appended,
+  version of them.
+
+  ###Example:
+    
+      append list([1,2,3]), list([4,5,6]) 
+  Will return something that is equivalent to:
+
+      list([1,2,3,4,5,6])
+  """
   def append(list_one, list_two) do
     append list_one, list_two, []
   end
@@ -52,6 +63,17 @@ defmodule ConsCarAndCdr do
   end
   defp append(list_one, list_two, acc) do
     append cdr(list_one), list_two, [car(list_one)|acc]
+  end
+
+  @doc ~S"""
+  Returns the last element in the list.
+  ###Example:
+    last_pair(list(1,2,3,4)) == 4
+  """
+  def last_pair(l), do: last_pair(l, nil)
+  defp last_pair(nil, prev), do: prev
+  defp last_pair(l, prev) do
+    last_pair cdr(l), car(l)
   end
 end
 

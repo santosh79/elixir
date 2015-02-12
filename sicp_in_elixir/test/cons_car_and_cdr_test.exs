@@ -31,4 +31,8 @@ defmodule ConsCarAndCdrTest do
     assert to_ex_list(one_thru_nine) == (1..9 |> Enum.to_list)
   end
 
+  test "last pair" do
+    assert last_pair(list([1,2,3,4])) == 4
+  end
+
 end
