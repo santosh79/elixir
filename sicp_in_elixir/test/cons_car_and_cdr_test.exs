@@ -41,4 +41,9 @@ defmodule ConsCarAndCdrTest do
     assert result_a == result_b
   end
 
+  test "is_pair?" do
+    assert ([1,2] |> list |> is_pair?)
+    assert ([1,2] |> is_pair?) == false
+  end
+
 end

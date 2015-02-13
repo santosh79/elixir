@@ -2,8 +2,9 @@ defmodule ConsCarAndCdr do
   def cons(a, b) do
     fn(option) ->
       case option do
-        :car -> a
-        :cdr -> b
+        :car      -> a
+        :cdr      -> b
+        :is_pair? -> true
       end
     end
   end
@@ -91,6 +92,20 @@ defmodule ConsCarAndCdr do
   defp reverse(nil, acc), do: acc |> list
   defp reverse(l, acc)    do
     reverse cdr(l), [car(l)|acc]
+  end
+
+  @doc ~S"""
+  Utility method that confirms if the argument passed in is a
+  cons pair.
+  ### Example:
+      cons(1,2) |> is_pair? #true
+  """
+  def is_pair?(l) do
+    try do
+      l.(:is_pair?)
+    rescue
+      _ -> false
+    end
   end
 end
 
